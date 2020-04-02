@@ -37,7 +37,7 @@ client.on("message", message => {
 
 client.on("ready", () => {
   console.log("ready");
-  client.user.setActivity(`https://github.com/CyberLinx/Trello-request-bot`, {type: "WATCHING"});
+  client.user.setActivity(`https://github.com/CyberLinx/trello-request-manager, {type: "WATCHING"});
 });
 
 client.login(config.discord.client.token);
