@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const client = new Discord.Client();
+const client = new Discord.Client({ partials: ['MESSAGE', 'REACTION'] });
 const config = require("./config.json");
 const Trello = require("trello");
 const trello = new Trello(config.trello.appKey, config.trello.userToken);
@@ -33,6 +33,21 @@ client.on("message", message => {
       });
     });
   });
+});
+
+client.on("messageReactionAdd", async (collected, user) => {
+  let embed = collected.message;
+  if(user.id !== config.discord.client.ownerID) return;
+  await embed.delete();
+  if(collected.first().emoji.name == config.discord.emotes.accept) {
+    await trello.updateCardList(embed.embeds[0].footer.text, config.trello.lists.accepted);
+    await trello.addLabelToCard(embed.embeds[0].footer.text, config.trello.labels.accepted);
+    await message.author.send(`Your request has been accepted and marked with accepted label: ${request.shortUrl}`);
+  } else if(collected.first().emoji.name == config.discord.emotes.decline) {
+    await trello.updateCardList(embed.embeds[0].footer.text, config.trello.lists.declined);
+    await trello.addLabelToCard(embed.embeds[0].footer.text, config.trello.labels.declined);
+    await message.author.send(`Your request has been declined: ${request.shortUrl}`);
+  };
 });
 
 client.on("ready", () => {
