@@ -1,0 +1,30 @@
+{
+  "trello": {
+    "appKey": "[TRELLO APP KEY]",
+    "userToken": "[TRELLO USER TOKEN]",
+    "lists": {
+      "requests": "[TRELLO LIST ID]",
+      "accepted": "[TRELLO LIST ID]",
+      "declined": "[TRELLO LIST ID]"
+    },
+    "labels": {
+      "enabled": true,
+      "accepted": "[TRELLO LABEL ID]",
+      "declined": "TRELLO LABEL ID"
+    }
+  },
+  "discord": {
+    "client": {
+      "token": "[DISCORD BOT TOKEN]",
+      "managerRole": "[MANAGER ROLE ID]"
+    },
+    "channels": {
+      "reqID": "[DISCORD REQUESTS SUBMISSIONS CHANNEL ID]",
+      "manageID": "[DISCORD REQUESTS MANAGE CHANNEL ID]"
+    },
+    "emotes": {
+      "decline": "❎",
+      "accept": "✅"
+    }
+  }
+}
